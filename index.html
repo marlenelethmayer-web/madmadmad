@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="de"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Art Installation - Madhope2&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Verhindert Ränder und Scrollen */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body, html {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0; padding: 0; width: 100%; height: 100%;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: black; overflow: hidden;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#player-container {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute; top: 0; left: 0;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100vw; height: 100vh;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Das Video füllt das ganze Display aus */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>iframe {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%; height: 100%; border: none;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>pointer-events: none; /* Deaktiviert Klicks auf das Video */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="player-container"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Deine YouTube Video-IDs</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const videoIds = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"3X_BYb9ws9Q", // Zábavní bazén</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"VmGrd3VlA2Y", // Aquapark UH</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"pPJKse_k50s"<span class="Apple-converted-space">  </span>// Armdale Roundabout</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>let currentIndex = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const displayTime = 120000; // 120000 ms = 2 Minuten</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function switchStream() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const container = document.getElementById('player-container');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const id = videoIds[currentIndex];</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// YouTube Embed URL mit Parametern für Autoplay, Mute und ohne UI</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const embedUrl = `https://www.youtube.com/embed/${id}?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;disablekb=1&amp;playlist=${id}&amp;loop=1`;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>container.innerHTML = `&lt;iframe src="${embedUrl}" allow="autoplay; encrypted-media; fullscreen"&gt;&lt;/iframe&gt;`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Index für das nächste Video erhöhen</p>
+<p class="p1"><span class="Apple-converted-space">            </span>currentIndex = (currentIndex + 1) % videoIds.length;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Intervall für den automatischen Wechsel starten</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setInterval(switchStream, displayTime);</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Den ersten Stream sofort laden</p>
+<p class="p1"><span class="Apple-converted-space">        </span>switchStream();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
